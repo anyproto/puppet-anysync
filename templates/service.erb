@@ -1,0 +1,20 @@
+# puppet managed
+
+[Unit]
+Description=<%= @daemon_name %>
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+User=<%= @user %>
+Group=<%= @group %>
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+ExecStart=/bin/<%= @daemon_name %> -c /etc/<%= @daemon_name %>/config.yml
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=<%= @daemon_name %>
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,38 @@
+---
+anysync::filenode::config::user: any-sync-filenode
+anysync::filenode::config::group: any-sync-filenode
+anysync::filenode::config::daemon_name: any-sync-filenode
+anysync::filenode::install::githubartifact:
+  any-sync-filenode:
+    org_name: "anyproto"
+    repository: "any-sync-filenode"
+    releasetag: "v%{lookup('pkg::any-sync-filenode')}"
+    package_version: "%{lookup('pkg::any-sync-filenode')}-1"
+    pattern: ".x86_64.rpm"
+    token: "%{lookup('github_token')}"
+
+anysync::filenode::config::accounts: "%{alias('any_sync_accounts')}"
+anysync::filenode::config::cfg:
+  network: "%{alias('any_sync_network')}"
+  account: {} # fetching from any_sync_filenode::config::accounts by hostname
+  drpc:
+    stream:
+      timeoutMilliseconds: 1000
+      maxMsgSizeMb: 256
+  yamux:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:443"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  metric:
+    addr: 0.0.0.0:8000
+  log:
+    defaultLevel: ''
+    namedLevels: {}
+    production: false
+  s3Store:
+    region: eu-central-1
+    profile: default
+    bucket: FIXME
+    maxThreads: 16
+  networkStorePath: /var/lib/any-sync-filenode/networkStore

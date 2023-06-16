@@ -1,0 +1,8 @@
+---
+pkg::any-sync-node: 0.2.3
+pkg::any-sync-filenode: 0.3.3
+pkg::any-sync-coordinator: 0.2.5
+
+anysync::enable_node: false
+anysync::enable_filenode: false
+anysync::enable_coordinator: false
