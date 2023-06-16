@@ -11,5 +11,5 @@ class anysync::node::monitoring {
     }
   }
   common::consul_cfg { "any-sync-node": port => 8000 }
-  collectd::cfg { $caller_module_name: content => inline_template("LoadPlugin processes\n<Plugin processes>\n    ProcessMatch \"any-sync-node\" \"/bin/any-sync-node\"\n</Plugin>\n") }
+  collectd::cfg { "any-sync-node": content => inline_template("LoadPlugin processes\n<Plugin processes>\n    ProcessMatch \"any-sync-node\" \"/bin/any-sync-node\"\n</Plugin>\n") }
 }
