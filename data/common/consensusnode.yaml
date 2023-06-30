@@ -1,0 +1,37 @@
+---
+anysync::consensusnode::config::user: any-sync-consensusnode
+anysync::consensusnode::config::group: any-sync-consensusnode
+anysync::consensusnode::config::daemon_name: any-sync-consensusnode
+anysync::consensusnode::install::githubartifact:
+  any-sync-consensusnode:
+    org_name: "anyproto"
+    repository: "any-sync-consensusnode"
+    releasetag: "v%{lookup('pkg::any-sync-consensusnode')}"
+    package_version: "%{lookup('pkg::any-sync-consensusnode')}-1"
+    pattern: ".x86_64.rpm"
+    token: "%{lookup('github_token')}"
+
+anysync::consensusnode::config::accounts: "%{alias('any_sync_accounts')}"
+anysync::consensusnode::config::cfg:
+  network: "%{alias('any_sync_network')}"
+  account: {} # fetching from any_sync_consensusnode::config::accounts by hostname
+  drpc:
+    stream:
+      timeoutMilliseconds: 1000
+      maxMsgSizeMb: 256
+  yamux:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:443"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  metric:
+    addr: 0.0.0.0:8000
+  log:
+    defaultLevel: ''
+    namedLevels: {}
+    production: false
+  mongo:
+    connect: mongodb://localhost:27017/?w=majority
+    database: consensus
+    logCollection: log
+  networkStorePath: /var/lib/any-sync-consensusnode/networkStore

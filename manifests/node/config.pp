@@ -5,6 +5,7 @@ class anysync::node::config (
   String $group,
   String $daemon_name,
 ) {
+  $basedir = dirname($cfg['networkStorePath'])
   user { $user:
     ensure => present,
     shell => '/sbin/nologin',
@@ -14,11 +15,15 @@ class anysync::node::config (
     ensure => present,
   }
   -> file {
+    "/etc/any-sync-node/":
+      ensure => directory,
+    ;
     "/etc/any-sync-node/config.yml":
       content => template("${module_name}/yaml.erb"),
       notify => Service["any-sync-node"],
     ;
     [
+      $basedir,
       $cfg['storage']['path'],
       $cfg['networkStorePath'],
     ]:

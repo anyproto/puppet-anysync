@@ -1,4 +1,4 @@
-class anysync::coordinator::config (
+class anysync::consensusnode::config (
   Hash $cfg,
   Hash $accounts,
   String $user,
@@ -15,12 +15,12 @@ class anysync::coordinator::config (
     ensure => present,
   }
   -> file {
-    "/etc/any-sync-coordinator/":
+    "/etc/any-sync-consensusnode/":
       ensure => directory,
     ;
-    "/etc/any-sync-coordinator/config.yml":
+    "/etc/any-sync-consensusnode/config.yml":
       content => template("${module_name}/yaml.erb"),
-      notify => Service["any-sync-coordinator"],
+      notify => Service["any-sync-consensusnode"],
     ;
     [
       $basedir,
@@ -31,8 +31,8 @@ class anysync::coordinator::config (
       group => $group,
     ;
   }
-  -> syslog_ng::cfg { "any-sync-coordinator": template => "t_short" }
-  -> systemd::unit_file { "any-sync-coordinator.service":
+  -> syslog_ng::cfg { "any-sync-consensusnode": template => "t_short" }
+  -> systemd::unit_file { "any-sync-consensusnode.service":
     content => template("${module_name}/service.erb"),
     enable => true,
     active => true,

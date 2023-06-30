@@ -6,6 +6,7 @@ class anysync::filenode::config (
   String $daemon_name,
   Hash $aws_credentials,
 ) {
+  $basedir = dirname($cfg['networkStorePath'])
   user { $user:
     ensure => present,
     shell => '/sbin/nologin',
@@ -15,11 +16,15 @@ class anysync::filenode::config (
     ensure => present,
   }
   -> file {
+    "/etc/any-sync-filenode/":
+      ensure => directory,
+    ;
     "/etc/any-sync-filenode/config.yml":
       content => template("${module_name}/yaml.erb"),
       notify => Service["any-sync-filenode"],
     ;
     [
+      $basedir,
       $cfg['networkStorePath'],
       "/home/$user/.aws/",
     ]:
