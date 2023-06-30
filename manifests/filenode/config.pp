@@ -16,7 +16,7 @@ class anysync::filenode::config (
   }
   -> file {
     "/etc/any-sync-filenode/config.yml":
-      content => template("any_sync_node/yaml.erb"),
+      content => template("${module_name}/yaml.erb"),
       notify => Service["any-sync-filenode"],
     ;
     [
