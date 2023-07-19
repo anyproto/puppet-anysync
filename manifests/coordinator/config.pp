@@ -22,6 +22,11 @@ class anysync::coordinator::config (
       content => template("${module_name}/yaml.erb"),
       notify => Service["any-sync-coordinator"],
     ;
+    # network.yml for any-sync-confapply
+    # usage: any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coordinator/network.yml -e
+    "/etc/any-sync-coordinator/network.yml":
+      content => template("${module_name}/network.yaml.erb"),
+    ;
     [
       $basedir,
       $cfg['networkStorePath'],

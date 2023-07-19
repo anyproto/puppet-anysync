@@ -1,0 +1,13 @@
+<%-
+# sort yaml {{
+def sort_hash(h)
+    {}.tap do |h2|
+        h.sort.each do |k,v|
+            h2[k] = v.is_a?(Hash) ? sort_hash(v) : v
+        end
+    end
+end
+@_cfg = sort_hash(@cfg['network'])
+# }}
+-%>
+<%= @_cfg.to_yaml(:indentation => 2, :canonical => false, :line_width => -1) %>
