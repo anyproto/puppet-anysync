@@ -22,6 +22,7 @@ anysync::coordinator::config::cfg:
   yamux:
     listenAddrs:
       - "%{facts.ec2_metadata.public-hostname}:443"
+      - "%{facts.ec2_metadata.public-hostname}:1443"
     writeTimeoutSec: 10
     dialTimeoutSec: 10
   metric:
