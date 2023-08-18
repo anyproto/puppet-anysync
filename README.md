@@ -71,12 +71,12 @@ any_sync_accounts:
   coordinator1.local:
     peerId: 12D3KooWRjnz8Ju1hFmY6SzoVYKXBVtqiQXGJkqQesQaRMpF2sVF
     peerKey: <secret>
-    signingKey: <secret>
+    signingKey: <secret> # network signingKey
   # consensus
   consensusnode1.local:
     peerId: 12D3KooWBjCiYhk31PhdjG72M9oQKMbcyC3adsMbT7tMrmTi8KeB
     peerKey: <secret>
-    signingKey: <secret>
+    signingKey: <secret> # network signingKey
 
 anysync::filenode::config::aws_credentials:
   default:
@@ -112,7 +112,8 @@ any_sync_network:
       types: [consensus]
 ```
 ### secrets
-for encrypting secrets please use [hiera-eyaml](https://github.com/voxpupuli/hiera-eyaml)
+* for generating keys please use [any-sync-tools](https://github.com/anyproto/any-sync-tools)
+* for encrypting secrets please use [hiera-eyaml](https://github.com/voxpupuli/hiera-eyaml)
 
 ### apply network config in mongo
 ```
