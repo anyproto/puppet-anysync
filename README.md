@@ -14,8 +14,8 @@ module for configure self-hosted setup any-sync-* daemons
 ## Setup
 ### compatible versions
 you can find compatible versions on this pages:
-* stable versions, used in production - https://puppetdoc.anytype.io/api/v1/prod-any-sync-compatible-versions/
-* unstable versions, used in test stand - https://puppetdoc.anytype.io/api/v1/stage1-any-sync-compatible-versions/
+* stable versions, used in [production](https://puppetdoc.anytype.io/api/v1/prod-any-sync-compatible-versions/)
+* unstable versions, used in [test stand](https://puppetdoc.anytype.io/api/v1/stage1-any-sync-compatible-versions/)
 
 ### example hiera configuration
 ```
