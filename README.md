@@ -115,16 +115,15 @@ any_sync_network:
 * for generating keys please use [any-sync-tools](https://github.com/anyproto/any-sync-tools)
 * for encrypting secrets please use [hiera-eyaml](https://github.com/voxpupuli/hiera-eyaml)
 
-### apply network config in mongo
-```
-any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coordinator/network.yml -e
-```
-
 ### Setup Requirements
 * redis
 * mongo
 
 ## Usage
+### apply network config in mongo
+```
+any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coordinator/network.yml -e
+```
 ### show current config in mongo
 ```
 use coordinator
