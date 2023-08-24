@@ -7,7 +7,6 @@ anysync::consensusnode::install::githubartifact:
     org_name: "anyproto"
     repository: "any-sync-consensusnode"
     releasetag: "v%{lookup('pkg::any-sync-consensusnode')}"
-    package_version: "%{lookup('pkg::any-sync-consensusnode')}-1"
     pattern: ".x86_64.rpm"
     token: "%{lookup('github_token')}"
 
