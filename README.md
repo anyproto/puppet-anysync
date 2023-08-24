@@ -118,6 +118,12 @@ any_sync_network:
 ### Setup Requirements
 * redis
 * mongo
+#### puppet modules requirements
+* [githubartifact](https://github.com/fb929/puppet-githubartifact)
+* [puppet-systemd 4.1.0](https://github.com/voxpupuli/puppet-systemd)
+* syslog_ng (TODO publish)
+* consul (TODO publish)
+* collectd (TODO publish)
 
 ## Usage
 ### apply network config in mongo
