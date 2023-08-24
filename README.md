@@ -20,6 +20,16 @@ you can find compatible versions on this pages:
 ### example hiera configuration
 ```
 ---
+classes:
+  - anysync
+
+# enable for relevant group of hosts {{
+anysync::consensusnode: true
+anysync::coordinator: true
+anysync::filenode: true
+anysync::node: true
+# }}
+
 pkg::any-sync-node: 0.2.12
 pkg::any-sync-filenode: 0.3.6
 pkg::any-sync-coordinator: 0.2.9
@@ -45,7 +55,7 @@ anysync::coordinator::config::cfg:
 
 anysync::consensusnode::config::cfg:
   mongo:
-    connect: mongodb://coordinator-db1.local:27017,coordinator-db2.local:27017,coordinator-db3.local:27017/?w=majority
+    connect: mongodb://coordinator-db1.local:27017,coordinator-db2.local:27017,coordinator-db3.local:27017/?w=majority # "w=majority" is required!
 
 any_sync_accounts:
   # tree node {{
@@ -118,6 +128,7 @@ any_sync_network:
 ### Setup Requirements
 * redis
 * mongo
+
 #### puppet modules requirements
 * [githubartifact](https://github.com/fb929/puppet-githubartifact)
 * [puppet-systemd 4.1.0](https://github.com/voxpupuli/puppet-systemd)
