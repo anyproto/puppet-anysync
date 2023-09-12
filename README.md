@@ -1,23 +1,23 @@
-# anysync
+# Puppet for any-sync
 https://tech.anytype.io/
 
 ## Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with template](#setup)
-1. [Usage - Configuration options and additional functionality](#usage)
+1. [Setup — The basics of getting started with template](#setup)
+1. [Usage — Configuration options and additional functionality](#usage)
 1. [Reference](#reference)
 
 ## Description
-module for configure self-hosted setup any-sync-* daemons
+Module to configure a self-hosted setup for any-sync-* daemons.
 
 ## Setup
-### compatible versions
-you can find compatible versions on this pages:
+### Compatible versions
+You can find compatible versions on these pages:
 * stable versions, used in [production](https://puppetdoc.anytype.io/api/v1/prod-any-sync-compatible-versions/)
 * unstable versions, used in [test stand](https://puppetdoc.anytype.io/api/v1/stage1-any-sync-compatible-versions/)
 
-### example hiera configuration
+### Example hiera configuration
 ```
 ---
 classes:
@@ -121,15 +121,15 @@ any_sync_network:
         - consensusnode1.local:443
       types: [consensus]
 ```
-### secrets
-* for generating keys please use [any-sync-tools](https://github.com/anyproto/any-sync-tools)
-* for encrypting secrets please use [hiera-eyaml](https://github.com/voxpupuli/hiera-eyaml)
+### Secrets
+* To generate keys, please use [any-sync-tools](https://github.com/anyproto/any-sync-tools)
+* To encrypt secrets, please use [hiera-eyaml](https://github.com/voxpupuli/hiera-eyaml)
 
 ### Setup Requirements
 * redis
 * mongo
 
-#### puppet modules requirements
+#### Puppet modules requirements
 * [githubartifact](https://github.com/fb929/puppet-githubartifact)
 * [puppet-systemd 4.1.0](https://github.com/voxpupuli/puppet-systemd)
 * syslog_ng (TODO publish)
@@ -137,18 +137,34 @@ any_sync_network:
 * collectd (TODO publish)
 
 ## Usage
-### apply network config in mongo
+### Apply network config in Mongo
 ```
 any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coordinator/network.yml -e
 ```
-### show current config in mongo
+### Ahow current config in Mongo
 ```
 use coordinator
 db.nodeConf.find().sort( { _id: -1 } ).limit(1)
 ```
 
 ## [Reference](REFERENCE.md)
-for update REFERENCE.md please run:
+To update REFERENCE.md please run:
 ```
 puppet strings generate --format markdown
 ```
+
+## Contribution
+Thank you for your desire to develop Anytype together!
+
+❤️ This project and everyone involved in it is governed by the [Code of Conduct](https://github.com/anyproto/.github/blob/main/docs/CODE_OF_CONDUCT.md).
+
+🧑‍💻 Check out our [contributing guide](https://github.com/anyproto/.github/blob/main/docs/CONTRIBUTING.md) to learn about asking questions, creating issues, or submitting pull requests.
+
+🫢 For security findings, please email [security@anytype.io](mailto:security@anytype.io) and refer to our [security guide](https://github.com/anyproto/.github/blob/main/docs/SECURITY.md) for more information.
+
+🤝 Follow us on [Github](https://github.com/anyproto) and join the [Contributors Community](https://github.com/orgs/anyproto/discussions).
+
+---
+Made by Any — a Swiss association 🇨🇭
+
+Licensed under [MIT](./LICENSE.md).
