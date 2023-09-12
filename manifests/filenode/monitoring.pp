@@ -1,15 +1,6 @@
 class anysync::filenode::monitoring {
-  include ::process_exporter
-  process_exporter::include { "any-sync-filenode":
-    cfg => {
-      "process_names" => [
-        {
-          "name" => "any-sync-filenode",
-          "comm" => ["any-sync-fileno"],
-        }
-      ]
-    }
+  if $::anysync::monitoring {
+    common::consul_cfg { "any-sync-filenode": port => 8000 }
+    collectd::cfg { "any-sync-filenode": content => inline_template("LoadPlugin processes\n<Plugin processes>\n    ProcessMatch \"any-sync-filenode\" \"/bin/any-sync-filenode\"\n</Plugin>\n") }
   }
-  common::consul_cfg { "any-sync-filenode": port => 8000 }
-  collectd::cfg { "any-sync-filenode": content => inline_template("LoadPlugin processes\n<Plugin processes>\n    ProcessMatch \"any-sync-filenode\" \"/bin/any-sync-filenode\"\n</Plugin>\n") }
 }

@@ -8,3 +8,5 @@ anysync::node: false
 anysync::filenode: false
 anysync::coordinator: false
 anysync::consensusnode: false
+anysync::syslog_ng: false
+anysync::monitoring: false

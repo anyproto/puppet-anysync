@@ -1,8 +1,25 @@
+# @summary configures the anysync module
+#
+# @param node
+#   enable or disable "tree node" daemon
+# @param filenode
+#   enable or disable "filenode" daemon
+# @param coordinator
+#   enable or disable "coordinator" daemon
+# @param consensusnode
+#   enable or disable "consensusnode" daemon
+# @param syslog_ng
+#   enable or disable syslog-ng configuration for logging
+# @param monitoring
+#   enable or disable monitoring manifests
+#
 class anysync (
   Boolean $node,
   Boolean $filenode,
   Boolean $coordinator,
   Boolean $consensusnode,
+  Boolean $syslog_ng,
+  Boolean $monitoring,
 ){
   if $node {
     class { "${module_name}::node::install": }

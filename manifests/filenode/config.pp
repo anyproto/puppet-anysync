@@ -1,3 +1,18 @@
+# @param cfg
+#   Defines config for daemon
+# @param accounts
+#   Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
+# @param user
+#   Defines user for daemon files and process
+# @param group
+#   Defines group for daemon files and process
+# @param daemon_name
+#   Defines daemon name
+# @param aws_credentials
+#   Defines credentials for access to s3
+# @param syslog_ng
+#   enable or disable syslog-ng configuration for logging
+#
 class anysync::filenode::config (
   Hash $cfg,
   Hash $accounts,
@@ -5,6 +20,7 @@ class anysync::filenode::config (
   String $group,
   String $daemon_name,
   Hash $aws_credentials,
+  Boolean $syslog_ng = $::anysync::syslog_ng,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:
@@ -48,11 +64,13 @@ class anysync::filenode::config (
     }
   }
 
-  syslog_ng::cfg { "any-sync-filenode":
-    require => File["/etc/any-sync-filenode/config.yml"],
-    template => "t_short",
+  if $syslog_ng {
+    syslog_ng::cfg { "any-sync-filenode":
+      require => File["/etc/any-sync-filenode/config.yml"],
+      template => "t_short",
+    }
   }
-  -> systemd::unit_file { "any-sync-filenode.service":
+  systemd::unit_file { "any-sync-filenode.service":
     content => template("${module_name}/service.erb"),
     enable => true,
     active => true,
