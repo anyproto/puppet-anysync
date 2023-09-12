@@ -6,7 +6,7 @@
 
 ### Classes
 
-* [`anysync`](#anysync)
+* [`anysync`](#anysync): configures the anysync module
 * [`anysync::consensusnode::config`](#anysync--consensusnode--config)
 * [`anysync::consensusnode::install`](#anysync--consensusnode--install)
 * [`anysync::consensusnode::monitoring`](#anysync--consensusnode--monitoring)
@@ -28,7 +28,7 @@
 
 ### <a name="anysync"></a>`anysync`
 
-The anysync class.
+configures the anysync module
 
 #### Parameters
 
@@ -38,30 +38,44 @@ The following parameters are available in the `anysync` class:
 * [`filenode`](#-anysync--filenode)
 * [`coordinator`](#-anysync--coordinator)
 * [`consensusnode`](#-anysync--consensusnode)
+* [`syslog_ng`](#-anysync--syslog_ng)
+* [`monitoring`](#-anysync--monitoring)
 
 ##### <a name="-anysync--node"></a>`node`
 
 Data type: `Boolean`
 
-
+enable or disable "tree node" daemon
 
 ##### <a name="-anysync--filenode"></a>`filenode`
 
 Data type: `Boolean`
 
-
+enable or disable "filenode" daemon
 
 ##### <a name="-anysync--coordinator"></a>`coordinator`
 
 Data type: `Boolean`
 
-
+enable or disable "coordinator" daemon
 
 ##### <a name="-anysync--consensusnode"></a>`consensusnode`
 
 Data type: `Boolean`
 
+enable or disable "consensusnode" daemon
 
+##### <a name="-anysync--syslog_ng"></a>`syslog_ng`
+
+Data type: `Boolean`
+
+enable or disable syslog-ng configuration for logging
+
+##### <a name="-anysync--monitoring"></a>`monitoring`
+
+Data type: `Boolean`
+
+enable or disable monitoring manifests
 
 ### <a name="anysync--consensusnode--config"></a>`anysync::consensusnode::config`
 
@@ -76,36 +90,45 @@ The following parameters are available in the `anysync::consensusnode::config` c
 * [`user`](#-anysync--consensusnode--config--user)
 * [`group`](#-anysync--consensusnode--config--group)
 * [`daemon_name`](#-anysync--consensusnode--config--daemon_name)
+* [`syslog_ng`](#-anysync--consensusnode--config--syslog_ng)
 
 ##### <a name="-anysync--consensusnode--config--cfg"></a>`cfg`
 
 Data type: `Hash`
 
-
+Defines config for daemon
 
 ##### <a name="-anysync--consensusnode--config--accounts"></a>`accounts`
 
 Data type: `Hash`
 
-
+Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
 
 ##### <a name="-anysync--consensusnode--config--user"></a>`user`
 
 Data type: `String`
 
-
+Defines user for daemon files and process
 
 ##### <a name="-anysync--consensusnode--config--group"></a>`group`
 
 Data type: `String`
 
-
+Defines group for daemon files and process
 
 ##### <a name="-anysync--consensusnode--config--daemon_name"></a>`daemon_name`
 
 Data type: `String`
 
+Defines daemon name
 
+##### <a name="-anysync--consensusnode--config--syslog_ng"></a>`syslog_ng`
+
+Data type: `Boolean`
+
+enable or disable syslog-ng configuration for logging
+
+Default value: `$::anysync::syslog_ng`
 
 ### <a name="anysync--consensusnode--install"></a>`anysync::consensusnode::install`
 
@@ -121,7 +144,7 @@ The following parameters are available in the `anysync::consensusnode::install` 
 
 Data type: `Hash`
 
-
+Defines config for githubartifact
 
 ### <a name="anysync--consensusnode--monitoring"></a>`anysync::consensusnode::monitoring`
 
@@ -144,36 +167,45 @@ The following parameters are available in the `anysync::coordinator::config` cla
 * [`user`](#-anysync--coordinator--config--user)
 * [`group`](#-anysync--coordinator--config--group)
 * [`daemon_name`](#-anysync--coordinator--config--daemon_name)
+* [`syslog_ng`](#-anysync--coordinator--config--syslog_ng)
 
 ##### <a name="-anysync--coordinator--config--cfg"></a>`cfg`
 
 Data type: `Hash`
 
-
+Defines config for daemon
 
 ##### <a name="-anysync--coordinator--config--accounts"></a>`accounts`
 
 Data type: `Hash`
 
-
+Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
 
 ##### <a name="-anysync--coordinator--config--user"></a>`user`
 
 Data type: `String`
 
-
+Defines user for daemon files and process
 
 ##### <a name="-anysync--coordinator--config--group"></a>`group`
 
 Data type: `String`
 
-
+Defines group for daemon files and process
 
 ##### <a name="-anysync--coordinator--config--daemon_name"></a>`daemon_name`
 
 Data type: `String`
 
+Defines daemon name
 
+##### <a name="-anysync--coordinator--config--syslog_ng"></a>`syslog_ng`
+
+Data type: `Boolean`
+
+enable or disable syslog-ng configuration for logging
+
+Default value: `$::anysync::syslog_ng`
 
 ### <a name="anysync--coordinator--install"></a>`anysync::coordinator::install`
 
@@ -189,7 +221,7 @@ The following parameters are available in the `anysync::coordinator::install` cl
 
 Data type: `Hash`
 
-
+Defines config for githubartifact
 
 ### <a name="anysync--coordinator--monitoring"></a>`anysync::coordinator::monitoring`
 
@@ -213,42 +245,51 @@ The following parameters are available in the `anysync::filenode::config` class:
 * [`group`](#-anysync--filenode--config--group)
 * [`daemon_name`](#-anysync--filenode--config--daemon_name)
 * [`aws_credentials`](#-anysync--filenode--config--aws_credentials)
+* [`syslog_ng`](#-anysync--filenode--config--syslog_ng)
 
 ##### <a name="-anysync--filenode--config--cfg"></a>`cfg`
 
 Data type: `Hash`
 
-
+Defines config for daemon
 
 ##### <a name="-anysync--filenode--config--accounts"></a>`accounts`
 
 Data type: `Hash`
 
-
+Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
 
 ##### <a name="-anysync--filenode--config--user"></a>`user`
 
 Data type: `String`
 
-
+Defines user for daemon files and process
 
 ##### <a name="-anysync--filenode--config--group"></a>`group`
 
 Data type: `String`
 
-
+Defines group for daemon files and process
 
 ##### <a name="-anysync--filenode--config--daemon_name"></a>`daemon_name`
 
 Data type: `String`
 
-
+Defines daemon name
 
 ##### <a name="-anysync--filenode--config--aws_credentials"></a>`aws_credentials`
 
 Data type: `Hash`
 
+Defines credentials for access to s3
 
+##### <a name="-anysync--filenode--config--syslog_ng"></a>`syslog_ng`
+
+Data type: `Boolean`
+
+enable or disable syslog-ng configuration for logging
+
+Default value: `$::anysync::syslog_ng`
 
 ### <a name="anysync--filenode--install"></a>`anysync::filenode::install`
 
@@ -264,7 +305,7 @@ The following parameters are available in the `anysync::filenode::install` class
 
 Data type: `Hash`
 
-
+Defines config for githubartifact
 
 ### <a name="anysync--filenode--monitoring"></a>`anysync::filenode::monitoring`
 
@@ -287,36 +328,45 @@ The following parameters are available in the `anysync::node::config` class:
 * [`user`](#-anysync--node--config--user)
 * [`group`](#-anysync--node--config--group)
 * [`daemon_name`](#-anysync--node--config--daemon_name)
+* [`syslog_ng`](#-anysync--node--config--syslog_ng)
 
 ##### <a name="-anysync--node--config--cfg"></a>`cfg`
 
 Data type: `Hash`
 
-
+Defines config for daemon
 
 ##### <a name="-anysync--node--config--accounts"></a>`accounts`
 
 Data type: `Hash`
 
-
+Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
 
 ##### <a name="-anysync--node--config--user"></a>`user`
 
 Data type: `String`
 
-
+Defines user for daemon files and process
 
 ##### <a name="-anysync--node--config--group"></a>`group`
 
 Data type: `String`
 
-
+Defines group for daemon files and process
 
 ##### <a name="-anysync--node--config--daemon_name"></a>`daemon_name`
 
 Data type: `String`
 
+Defines daemon name
 
+##### <a name="-anysync--node--config--syslog_ng"></a>`syslog_ng`
+
+Data type: `Boolean`
+
+enable or disable syslog-ng configuration for logging
+
+Default value: `$::anysync::syslog_ng`
 
 ### <a name="anysync--node--install"></a>`anysync::node::install`
 
@@ -332,7 +382,7 @@ The following parameters are available in the `anysync::node::install` class:
 
 Data type: `Hash`
 
-
+Defines config for githubartifact
 
 ### <a name="anysync--node--monitoring"></a>`anysync::node::monitoring`
 
