@@ -132,9 +132,9 @@ any_sync_network:
 #### Puppet modules requirements
 * [githubartifact](https://github.com/fb929/puppet-githubartifact)
 * [puppet-systemd 4.1.0](https://github.com/voxpupuli/puppet-systemd)
-* syslog_ng (TODO publish)
-* consul (TODO publish)
-* collectd (TODO publish)
+* optional [syslog_ng](https://github.com/fb929/puppet-syslog-ng)
+* optional [consul](https://github.com/voxpupuli/puppet-consul) + [tools](https://github.com/fb929/puppet-tools)
+* optional [collectd](https://github.com/fb929/puppet-collectd)
 
 ## Usage
 ### Apply network config in Mongo
