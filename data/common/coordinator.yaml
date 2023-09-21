@@ -24,6 +24,11 @@ anysync::coordinator::config::cfg:
       - "%{facts.ec2_metadata.public-hostname}:1443"
     writeTimeoutSec: 10
     dialTimeoutSec: 10
+  quic:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:5430"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
   metric:
     addr: 0.0.0.0:8000
   log:
@@ -41,3 +46,7 @@ anysync::coordinator::config::cfg:
   cafeApi:
     url: "https://<login:pass>@cafe1.anytype.io"
   networkStorePath: /var/lib/any-sync-coordinator/networkStore
+  fileLimit:
+    limitDefault: 1073741824
+    limitAlphaUsers: 10737418240
+    limitNightlyUsers: 53687091200

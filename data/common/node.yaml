@@ -23,6 +23,11 @@ anysync::node::config::cfg:
       - "%{facts.ec2_metadata.public-hostname}:1443"
     writeTimeoutSec: 10
     dialTimeoutSec: 10
+  quic:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:5430"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
   metric:
     addr: 0.0.0.0:8000
   log:

@@ -99,26 +99,32 @@ any_sync_network:
     - peerId: 12D3KooWLTVK3VgXziU8ZcvvHUebueSBPiJNjXBxm3DQWtqsCbWD
       addresses:
         - node1.local:443
+        - quic://node1.local:5430
       types: [tree]
     - peerId: 12D3KooWBTWo5KVveQuVEA4VeivgbS7LxGkTgmWspEtpaw3D5xXw
       addresses:
         - node2.local:443
+        - quic://node2.local:5430
       types: [tree]
     - peerId: 12D3KooWF8HJnjL8MDUAExyg7yEAXhcXKzMwsn3dvivDjKWe7NN5
       addresses:
         - node3.local:443
+        - quic://node3.local:5430
       types: [tree]
     - peerId: 12D3KooWJExfEKskv47BP77mrBV2ciCgZgkdZFrL5R1CQjU6DVb6
       addresses:
         - filenode1.local:443
+        - quic://filenode1.local:5430
       types: [file]
     - peerId: 12D3KooWRjnz8Ju1hFmY6SzoVYKXBVtqiQXGJkqQesQaRMpF2sVF
       addresses:
         - coordinator1.local:443
+        - quic://coordinator1.local:5430
       types: [coordinator]
     - peerId: 12D3KooWBjCiYhk31PhdjG72M9oQKMbcyC3adsMbT7tMrmTi8KeB
       addresses:
         - consensusnode1.local:443
+        - quic://consensusnode1.local:5430
       types: [consensus]
 ```
 ### Secrets
