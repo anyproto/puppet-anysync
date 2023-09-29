@@ -1,4 +1,1 @@
---title 'puppet documetation'
 --markup markdown
---readme README.md
---files REFERENCE.md
