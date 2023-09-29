@@ -1,5 +1,5 @@
 {
-  "name": "anysync",
+  "name": "anyproto-anysync",
   "version": "0.0.1",
   "author": "anyproto",
   "summary": "Installs, configures, and manages the any-sync-* services.",
@@ -8,8 +8,14 @@
   "project_page": "https://anytype.io",
   "issues_url": "https://github.com/anyproto/puppet-anysync/issues",
   "dependencies": [
-    { "name":"puppetlabs/stdlib","version_requirement":">= 8.5.0" },
-    { "name":"puppet/systemd","version_requirement":">= 4.1.0" }
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 8.5.0"
+    },
+    {
+      "name": "puppet/systemd",
+      "version_requirement": ">= 4.1.0"
+    }
   ],
   "operatingsystem_support": [
     {
@@ -36,5 +42,8 @@
       "name": "puppet",
       "version_requirement": ">= 7.0.0 < 8.0.0"
     }
-  ]
+  ],
+  "pdk-version": "2.7.1",
+  "template-url": "pdk-default#2.7.4",
+  "template-ref": "tags/2.7.4-0-g58edf57"
 }
