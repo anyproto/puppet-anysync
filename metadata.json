@@ -1,6 +1,6 @@
 {
   "name": "anyproto-anysync",
-  "version": "0.0.1",
+  "version": "%VERSION%",
   "author": "anyproto",
   "summary": "Installs, configures, and manages the any-sync-* services.",
   "license": "MIT",
