@@ -25,7 +25,7 @@ jobs:
           draft: false
           prerelease: false
   build:
-    name: create release
+    name: build and publish module
     runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
