@@ -12,7 +12,7 @@ anysync::ns::install::githubartifact:
 
 anysync::ns::config::accounts: "%{alias('any_sync_accounts')}"
 anysync::ns::config::cfg:
-  network: "%{alias('any_sync_network')}"
+  network: {}
   account: {} # fetching from any_sync_ns::config::accounts by hostname
   drpc:
     stream:
