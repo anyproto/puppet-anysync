@@ -1,0 +1,56 @@
+# @param cfg
+#   Defines config for daemon
+# @param accounts
+#   Defines "account" settings for all nodes (see "any_sync_accounts" in README.md)
+# @param user
+#   Defines user for daemon files and process
+# @param group
+#   Defines group for daemon files and process
+# @param daemon_name
+#   Defines daemon name
+# @param syslog_ng
+#   enable or disable syslog-ng configuration for logging
+#
+class anysync::pp::config (
+  Hash $cfg,
+  Hash $accounts,
+  String $user,
+  String $group,
+  String $daemon_name,
+  Boolean $syslog_ng = $::anysync::syslog_ng,
+) {
+  $basedir = dirname($cfg['networkStorePath'])
+  user { $user:
+    ensure => present,
+    shell => '/sbin/nologin',
+    managehome => false,
+  }
+  -> group { $group:
+    ensure => present,
+  }
+  -> file {
+    "/etc/any-pp-node/":
+      ensure => directory,
+    ;
+    "/etc/any-pp-node/config.yml":
+      content => template("${module_name}/yaml.erb"),
+      notify => Service["any-pp-node"],
+    ;
+    [
+      $basedir,
+      $cfg['networkStorePath'],
+    ]:
+      ensure => directory,
+      owner => $user,
+      group => $group,
+    ;
+  }
+  if $syslog_ng {
+    syslog_ng::cfg { "any-pp-node": template => "t_short" }
+  }
+  systemd::unit_file { "any-pp-node.service":
+    content => template("${module_name}/service.erb"),
+    enable => true,
+    active => true,
+  }
+}

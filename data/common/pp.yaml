@@ -1,0 +1,48 @@
+---
+anysync::pp::config::user: any-pp-node
+anysync::pp::config::group: any-pp-node
+anysync::pp::config::daemon_name: any-pp-node
+anysync::pp::install::githubartifact:
+  any-pp-node:
+    org_name: "anyproto"
+    repository: "any-pp-node"
+    releasetag: "v%{lookup('pkg::any-pp-node')}"
+    pattern: ".%{facts.os.architecture}.rpm"
+    token: "%{lookup('github_token')}"
+
+anysync::pp::config::accounts: "%{alias('any_sync_accounts')}"
+anysync::pp::config::cfg:
+  network: "%{alias('any_sync_network')}"
+  account: {} # fetching from anysync::pp::config::accounts by hostname
+  drpc:
+    stream:
+      timeoutMilliseconds: 1000
+      maxMsgSizeMb: 256
+  yamux:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:443"
+      - "%{facts.ec2_metadata.public-hostname}:1443"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  quic:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:5430"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  metric:
+    addr: 0.0.0.0:8000
+  log:
+    defaultLevel: ''
+    namedLevels: {}
+    production: false
+  mongo:
+    connect: mongodb://127.0.0.1:27017
+    database: pp
+  networkStorePath: /var/lib/any-pp-node/networkStore
+  stripe:
+    apiKey: xxx # CHANGE ME (use encrypted hiera)
+    webhooksHttpPort: 8080
+    webhooksSecret: xxx # CHANGE ME (use encrypted hiera)
+    runWebhooksServer: true
+    nameserviceAdminPeerKey: xxx # CHANGE ME (use encrypted hiera)
+    useNameService: true
