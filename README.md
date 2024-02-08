@@ -150,7 +150,6 @@ any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coor
 ### Ahow current config in Mongo
 ```
 use coordinator
-db.getMongo().setReadPref('primaryPreferred')
 db.nodeConf.find().sort( { _id: -1 } ).limit(1)
 ```
 
