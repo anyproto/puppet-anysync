@@ -3,6 +3,7 @@ pkg::any-sync-node: 0.2.3
 pkg::any-sync-filenode: 0.3.3
 pkg::any-sync-coordinator: 0.2.5
 pkg::any-sync-consensusnode: 0.0.1
+pkg::any-ns-node: 0.0.1
 
 anysync::node: false
 anysync::filenode: false
@@ -10,3 +11,4 @@ anysync::coordinator: false
 anysync::consensusnode: false
 anysync::syslog_ng: false
 anysync::monitoring: false
+anysync::ns: false
