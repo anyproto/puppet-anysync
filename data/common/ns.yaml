@@ -46,12 +46,12 @@ anysync::ns::config::cfg:
     retryCountHighNonce: 2
   contracts:
     gethUrl: https://sepolia.infura.io/v3/xxx # CHANGE ME (use encrypted hiera)
-    registry: xxx # CHANGE ME (use encrypted hiera)
+    ensRegistry: xxx # CHANGE ME (use encrypted hiera)
     resolver: xxx # CHANGE ME (use encrypted hiera)
-    privateController: xxx # CHANGE ME (use encrypted hiera)
+    registrarControllerPrivate: xxx # CHANGE ME (use encrypted hiera)
     nameWrapper: xxx # CHANGE ME (use encrypted hiera)
     registrar: xxx # CHANGE ME (use encrypted hiera)
-    token: xxx # CHANGE ME (use encrypted hiera)
+    nameToken: xxx # CHANGE ME (use encrypted hiera)
     tokenDecimals: 6
     admin: xxx # CHANGE ME (use encrypted hiera)
     adminPk: xxx # CHANGE ME (use encrypted hiera)
