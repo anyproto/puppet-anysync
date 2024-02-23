@@ -7,7 +7,7 @@ anysync::filenode::install::githubartifact:
     org_name: "anyproto"
     repository: "any-sync-filenode"
     releasetag: "v%{lookup('pkg::any-sync-filenode')}"
-    pattern: ".x86_64.rpm"
+    pattern: ".%{facts.os.architecture}.rpm"
     token: "%{lookup('github_token')}"
 
 anysync::filenode::config::accounts: "%{alias('any_sync_accounts')}"

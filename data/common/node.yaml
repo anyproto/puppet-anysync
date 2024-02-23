@@ -7,7 +7,7 @@ anysync::node::install::githubartifact:
     org_name: "anyproto"
     repository: "any-sync-node"
     releasetag: "v%{lookup('pkg::any-sync-node')}"
-    pattern: ".x86_64.rpm"
+    pattern: ".%{facts.os.architecture}.rpm"
     token: "%{lookup('github_token')}"
 anysync::node::config::accounts: "%{alias('any_sync_accounts')}"
 anysync::node::config::cfg:
