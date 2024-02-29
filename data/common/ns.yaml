@@ -50,7 +50,6 @@ anysync::ns::config::cfg:
     resolver: xxx # CHANGE ME (use encrypted hiera)
     registrarControllerPrivate: xxx # CHANGE ME (use encrypted hiera)
     nameWrapper: xxx # CHANGE ME (use encrypted hiera)
-    registrar: xxx # CHANGE ME (use encrypted hiera)
     nameToken: xxx # CHANGE ME (use encrypted hiera)
     tokenDecimals: 6
     admin: xxx # CHANGE ME (use encrypted hiera)
