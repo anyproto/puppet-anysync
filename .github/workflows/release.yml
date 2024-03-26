@@ -5,42 +5,39 @@ on:
 
 name: release
 
-permissions: write-all
+permissions:
+  contents: write
+  packages: write
 
 jobs:
-  create_release:
-    name: create release
+  build:
+    name: release, build and publish module
     runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GH Release
+        uses: softprops/action-gh-release@v0.1.15
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true
           draft: false
           prerelease: false
-  build:
-    name: build and publish module
-    runs-on: ubuntu-latest
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
-    steps:
+          
       - name: Get latest tag
         id: vars
         run: |
           echo "{tag}=${GITHUB_REF:10}" >> $GITHUB_OUTPUT
           echo "$GITHUB_REF_NAME" | sed 's|^[a-zA-Z]\+|RELEASE_VERSION=|; s|-|_|g' >> $GITHUB_OUTPUT
+          
       - name: Clone repository
         uses: actions/checkout@v3.4.0
         with:
           ref: ${{ steps.vars.outputs.tag }}
+          
       - name: set version in metadata.json
         run: sed -i 's|%VERSION%|${{ steps.vars.outputs.RELEASE_VERSION }}|' metadata.json
+        
       - name: Build and publish module
         uses: barnumbirr/action-forge-publish@v2.13.0
         env:
