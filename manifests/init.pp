@@ -20,6 +20,7 @@ class anysync (
   Boolean $consensusnode,
   Boolean $syslog_ng,
   Boolean $monitoring,
+  Boolean $ns,
 ){
   if $node {
     class { "${module_name}::node::install": }
@@ -44,5 +45,11 @@ class anysync (
     -> class { "${module_name}::consensusnode::config": }
     -> class { "${module_name}::consensusnode::service": }
     -> class { "${module_name}::consensusnode::monitoring": }
+  }
+  if $ns {
+    class { "${module_name}::ns::install": }
+    -> class { "${module_name}::ns::config": }
+    -> class { "${module_name}::ns::service": }
+    -> class { "${module_name}::ns::monitoring": }
   }
 }

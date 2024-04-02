@@ -1,0 +1,66 @@
+---
+anysync::ns::config::user: any-ns-node
+anysync::ns::config::group: any-ns-node
+anysync::ns::config::daemon_name: any-ns-node
+anysync::ns::install::githubartifact:
+  any-ns-node:
+    org_name: "anyproto"
+    repository: "any-ns-node"
+    releasetag: "v%{lookup('pkg::any-ns-node')}"
+    pattern: ".%{facts.os.architecture}.rpm"
+    token: "%{lookup('github_token')}"
+
+anysync::ns::config::accounts: "%{alias('any_sync_accounts')}"
+anysync::ns::config::cfg:
+  network: "%{alias('any_sync_network')}"
+  account: {} # fetching from any_sync_ns::config::accounts by hostname
+  drpc:
+    stream:
+      timeoutMilliseconds: 1000
+      maxMsgSizeMb: 256
+  yamux:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:443"
+      - "%{facts.ec2_metadata.public-hostname}:1443"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  quic:
+    listenAddrs:
+      - "%{facts.ec2_metadata.public-hostname}:5430"
+    writeTimeoutSec: 10
+    dialTimeoutSec: 10
+  metric:
+    addr: 0.0.0.0:8000
+  log:
+    defaultLevel: ''
+    namedLevels: {}
+    production: false
+  mongo:
+    connect: mongodb://127.0.0.1:27017 # CHANGE ME
+    database: ns
+  networkStorePath: /var/lib/any-ns-node/networkStore
+  queue:
+    isSkipProcessing: false
+    isSkipProcessingBackground: false
+    retryCountNonce: 10
+    retryCountHighNonce: 2
+  contracts:
+    gethUrl: https://sepolia.infura.io/v3/xxx # CHANGE ME (use encrypted hiera)
+    ensRegistry: xxx # CHANGE ME (use encrypted hiera)
+    resolver: xxx # CHANGE ME (use encrypted hiera)
+    registrarControllerPrivate: xxx # CHANGE ME (use encrypted hiera)
+    nameWrapper: xxx # CHANGE ME (use encrypted hiera)
+    nameToken: xxx # CHANGE ME (use encrypted hiera)
+    tokenDecimals: 6
+    admin: xxx # CHANGE ME (use encrypted hiera)
+    adminPk: xxx # CHANGE ME (use encrypted hiera)
+    waitMintingRetryCount: 5
+    registrarImplementation: # CHANGE ME (use encrypted hiera)
+  accountAbstraction:
+    alchemyRpcUrl: https://eth-sepolia.g.alchemy.com/v2/xxx # CHANGE ME (use encrypted hiera)
+    alchemyApiKey: xxx # CHANGE ME (use encrypted hiera)
+    accountFactory: xxx # CHANGE ME (use encrypted hiera)
+    entryPoint: xxx # CHANGE ME (use encrypted hiera)
+    gasPolicyID: xxx # CHANGE ME (use encrypted hiera)
+    chainID: xxx # CHANGE ME (use encrypted hiera)
+    nameTokensPerName: 10
