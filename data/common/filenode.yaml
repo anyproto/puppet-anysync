@@ -41,3 +41,4 @@ anysync::filenode::config::cfg:
     bucket: FIXME
     maxThreads: 16
   networkStorePath: /var/lib/any-sync-filenode/networkStore
+  defaultLimit: 1073741824
