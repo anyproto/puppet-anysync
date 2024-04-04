@@ -38,6 +38,7 @@ anysync::ns::config::cfg:
   mongo:
     connect: mongodb://127.0.0.1:27017 # CHANGE ME
     database: ns
+  readFromCache: true
   networkStorePath: /var/lib/any-ns-node/networkStore
   queue:
     isSkipProcessing: false
