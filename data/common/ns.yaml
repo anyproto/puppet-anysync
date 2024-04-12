@@ -64,3 +64,6 @@ anysync::ns::config::cfg:
     gasPolicyID: xxx # CHANGE ME (use encrypted hiera)
     chainID: xxx # CHANGE ME (use encrypted hiera)
     nameTokensPerName: 10
+  sentry:
+    dsn: https://mytoken@sentry.example.com/1 # CHANGE ME
+    environment: myenv # CHANGE ME
