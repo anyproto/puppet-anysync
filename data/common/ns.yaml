@@ -68,3 +68,7 @@ anysync::ns::config::cfg:
   sentry:
     dsn: https://mytoken@sentry.example.com/1 # CHANGE ME
     environment: myenv # CHANGE ME
+  limiter:
+    default:
+      rps: 10
+      burst: 10
