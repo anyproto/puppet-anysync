@@ -16,17 +16,22 @@ class anysync::node::config (
   Hash $accounts,
   String $user,
   String $group,
+  Variant[Integer,Boolean] $uid,
+  Variant[Integer,Boolean] $gid,
   String $daemon_name,
   Boolean $syslog_ng = $::anysync::syslog_ng,
+  Boolean $create_storage_path_dir,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:
     ensure => present,
     shell => '/sbin/nologin',
     managehome => false,
+    uid => $uid,
   }
   -> group { $group:
     ensure => present,
+    gid => $gid,
   }
   -> file {
     "/etc/any-sync-node/":
@@ -38,13 +43,21 @@ class anysync::node::config (
     ;
     [
       $basedir,
-      $cfg['storage']['path'],
       $cfg['networkStorePath'],
     ]:
       ensure => directory,
       owner => $user,
       group => $group,
     ;
+  }
+  if $create_storage_path_dir {
+    file {
+      $cfg['storage']['path']:
+        ensure => directory,
+        owner => $user,
+        group => $group,
+      ;
+    }
   }
   if $syslog_ng {
     syslog_ng::cfg { "any-sync-node": template => "t_short" }
