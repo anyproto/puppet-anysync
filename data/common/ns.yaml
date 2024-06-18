@@ -72,3 +72,4 @@ anysync::ns::config::cfg:
     default:
       rps: 10
       burst: 10
+  ensip15validation: false
