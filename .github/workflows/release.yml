@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    - 'v[0-9]+.[0-9]+.[0-9]+'
 
 name: release
 
@@ -13,31 +13,25 @@ jobs:
   build:
     name: release, build and publish module
     runs-on: ubuntu-latest
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      - name: Create GH Release
-        uses: softprops/action-gh-release@v0.1.15
+      - uses: actions/checkout@v4
+      - name: Create release
+        uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ github.ref_name }}
           generate_release_notes: true
           draft: false
           prerelease: false
-          
-      - name: Get latest tag
+
+      - name: Get release version
         id: vars
         run: |
           echo "{tag}=${GITHUB_REF:10}" >> $GITHUB_OUTPUT
           echo "$GITHUB_REF_NAME" | sed 's|^[a-zA-Z]\+|RELEASE_VERSION=|; s|-|_|g' >> $GITHUB_OUTPUT
-          
-      - name: Clone repository
-        uses: actions/checkout@v3.4.0
-        with:
-          ref: ${{ steps.vars.outputs.tag }}
-          
-      - name: set version in metadata.json
+
+      - name: Set version in metadata.json
         run: sed -i 's|%VERSION%|${{ steps.vars.outputs.RELEASE_VERSION }}|' metadata.json
-        
+
       - name: Build and publish module
         uses: barnumbirr/action-forge-publish@v2.13.0
         env:
