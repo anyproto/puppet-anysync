@@ -58,6 +58,15 @@ class anysync::node::config (
         group => $group,
       ;
     }
+    if has_key($cfg['storage'],'anyStorePath') {
+      file {
+        $cfg['storage']['anyStorePath']:
+          ensure => directory,
+          owner => $user,
+          group => $group,
+        ;
+      }
+    }
   }
   if $syslog_ng {
     syslog_ng::cfg { "any-sync-node": template => "t_short" }
