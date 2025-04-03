@@ -1,6 +1,6 @@
 <%-
 # generate "account" section {{
-@public_hostname = @facts['ec2_metadata']['public-hostname']
+@public_hostname = @facts['networking']['fqdn']
 if @accounts[@public_hostname] then
   @cfg['account'] = @accounts[@public_hostname]
 elsif @accounts[@fqdn] then
