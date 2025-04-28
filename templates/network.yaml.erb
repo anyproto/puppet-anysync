@@ -7,7 +7,11 @@ def sort_hash(h)
         end
     end
 end
-@_cfg = sort_hash(@cfg['network'])
+if @network.empty? then
+  @_cfg = sort_hash(@cfg['network'])
+else
+  @_cfg = sort_hash(@network)
+end
 # }}
 -%>
 <%= @_cfg.to_yaml(:indentation => 2, :canonical => false, :line_width => -1) %>
