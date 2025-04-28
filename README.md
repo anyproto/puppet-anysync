@@ -152,6 +152,10 @@ any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coor
 use coordinator
 db.nodeConf.find().sort( { _id: -1 } ).limit(1)
 ```
+or
+```
+mongosh coordinator --eval 'db.getMongo().setReadPref("primaryPreferred"); db.nodeConf.find().sort( { _id: -1 } ).limit(1)'
+```
 
 ## [Reference](REFERENCE.md)
 To update REFERENCE.md please run:
