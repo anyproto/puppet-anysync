@@ -11,6 +11,7 @@ anysync::coordinator::install::githubartifact:
     token: "%{lookup('github_token')}"
 
 anysync::coordinator::config::accounts: "%{alias('any_sync_accounts')}"
+anysync::coordinator::config::network: {} # Set this parameter if you want to use a different configuration for the /etc/any-sync-coordinator/network.yml
 anysync::coordinator::config::cfg:
   network: "%{alias('any_sync_network')}"
   account: {} # fetching from any_sync_coordinator::config::accounts by hostname

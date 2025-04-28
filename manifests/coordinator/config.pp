@@ -13,6 +13,7 @@
 #
 class anysync::coordinator::config (
   Hash $cfg,
+  Hash $network,
   Hash $accounts,
   String $user,
   String $group,
