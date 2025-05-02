@@ -18,7 +18,7 @@ class anysync::coordinator::config (
   String $user,
   String $group,
   String $daemon_name,
-  Boolean $syslog_ng = $::anysync::syslog_ng,
+  Hash $syslog_ng = $::anysync::_syslog_ng,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:
@@ -51,8 +51,8 @@ class anysync::coordinator::config (
       group => $group,
     ;
   }
-  if $syslog_ng {
-    syslog_ng::cfg { "any-sync-coordinator": template => "t_short" }
+  if $syslog_ng['ensure'] {
+    syslog_ng::cfg { "any-sync-coordinator": * => $syslog_ng }
   }
   systemd::unit_file { "any-sync-coordinator.service":
     content => template("${module_name}/service.erb"),

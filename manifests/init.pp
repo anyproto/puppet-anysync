@@ -18,10 +18,19 @@ class anysync (
   Boolean $filenode,
   Boolean $coordinator,
   Boolean $consensusnode,
-  Boolean $syslog_ng,
+  Variant[Hash,Boolean] $syslog_ng,
   Boolean $monitoring,
   Boolean $ns,
 ){
+  if $syslog_ng =~ Hash {
+    $_syslog_ng = $syslog_ng
+  } else {
+    $_syslog_ng = {
+      ensure => $syslog_ng,
+      template => "t_short",
+    }
+  }
+
   if $node {
     class { "${module_name}::node::install": }
     -> class { "${module_name}::node::config": }

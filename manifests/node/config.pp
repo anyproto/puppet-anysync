@@ -19,7 +19,7 @@ class anysync::node::config (
   Variant[Integer,Boolean] $uid,
   Variant[Integer,Boolean] $gid,
   String $daemon_name,
-  Boolean $syslog_ng = $::anysync::syslog_ng,
+  Hash $syslog_ng = $::anysync::_syslog_ng,
   Boolean $create_storage_path_dir,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
@@ -68,8 +68,8 @@ class anysync::node::config (
       }
     }
   }
-  if $syslog_ng {
-    syslog_ng::cfg { "any-sync-node": template => "t_short" }
+  if $syslog_ng['ensure'] {
+    syslog_ng::cfg { "any-sync-node": * => $syslog_ng }
   }
   systemd::unit_file { "any-sync-node.service":
     content => template("${module_name}/service.erb"),
