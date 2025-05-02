@@ -9,6 +9,8 @@ anysync::node: false
 anysync::filenode: false
 anysync::coordinator: false
 anysync::consensusnode: false
-anysync::syslog_ng: false
+anysync::syslog_ng:
+  ensure: false
+  template: t_short
 anysync::monitoring: false
 anysync::ns: false

@@ -20,7 +20,7 @@ class anysync::filenode::config (
   String $group,
   String $daemon_name,
   Hash $aws_credentials,
-  Boolean $syslog_ng = $::anysync::syslog_ng,
+  Hash $syslog_ng = $::anysync::_syslog_ng,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:
@@ -64,11 +64,8 @@ class anysync::filenode::config (
     }
   }
 
-  if $syslog_ng {
-    syslog_ng::cfg { "any-sync-filenode":
-      require => File["/etc/any-sync-filenode/config.yml"],
-      template => "t_short",
-    }
+  if $syslog_ng['ensure'] {
+    syslog_ng::cfg { "any-sync-filenode": * => $syslog_ng }
   }
   systemd::unit_file { "any-sync-filenode.service":
     content => template("${module_name}/service.erb"),

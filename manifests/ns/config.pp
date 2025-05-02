@@ -17,7 +17,7 @@ class anysync::ns::config (
   String $user,
   String $group,
   String $daemon_name,
-  Boolean $syslog_ng = $::anysync::syslog_ng,
+  Hash $syslog_ng = $::anysync::_syslog_ng,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:
@@ -45,8 +45,8 @@ class anysync::ns::config (
       group => $group,
     ;
   }
-  if $syslog_ng {
-    syslog_ng::cfg { "any-ns-node": template => "t_short" }
+  if $syslog_ng['ensure'] {
+    syslog_ng::cfg { "any-ns-node": * => $syslog_ng }
   }
   systemd::unit_file { "any-ns-node.service":
     content => template("${module_name}/service.erb"),

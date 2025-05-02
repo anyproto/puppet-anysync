@@ -138,7 +138,7 @@ any_sync_network:
 #### Puppet modules requirements
 * [githubartifact](https://github.com/fb929/puppet-githubartifact)
 * [puppet-systemd 4.1.0](https://github.com/voxpupuli/puppet-systemd)
-* optional [syslog_ng](https://github.com/fb929/puppet-syslog-ng)
+* optional [syslog_ng](https://github.com/fb929/puppet-syslog-ng), minimum version v1.2.0
 * optional [consul](https://github.com/voxpupuli/puppet-consul) + [tools](https://github.com/fb929/puppet-tools)
 * optional [collectd](https://github.com/fb929/puppet-collectd)
 
