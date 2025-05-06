@@ -147,7 +147,7 @@ any_sync_network:
 ```
 any-sync-confapply -c /etc/any-sync-coordinator/config.yml -n /etc/any-sync-coordinator/network.yml -e
 ```
-### Ahow current config in Mongo
+### Show current config in Mongo
 ```
 use coordinator
 db.nodeConf.find().sort( { _id: -1 } ).limit(1)
