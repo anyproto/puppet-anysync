@@ -14,3 +14,4 @@ anysync::syslog_ng:
   template: t_short
 anysync::monitoring: false
 anysync::ns: false
+anysync::limit_nofile: 65535

@@ -21,6 +21,7 @@ class anysync::node::config (
   String $daemon_name,
   Hash $syslog_ng = $::anysync::_syslog_ng,
   Boolean $create_storage_path_dir,
+  Variant[Integer,Boolean] $limit_nofile = $::anysync::limit_nofile,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:

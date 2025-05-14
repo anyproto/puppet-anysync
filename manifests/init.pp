@@ -21,6 +21,7 @@ class anysync (
   Variant[Hash,Boolean] $syslog_ng,
   Boolean $monitoring,
   Boolean $ns,
+  Variant[Integer,Boolean] $limit_nofile,
 ){
   if $syslog_ng =~ Hash {
     $_syslog_ng = $syslog_ng

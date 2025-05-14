@@ -13,6 +13,9 @@ ExecStart=/bin/<%= @daemon_name %> -c /etc/<%= @daemon_name %>/config.yml
 Restart=on-failure
 RestartSec=5
 SyslogIdentifier=<%= @daemon_name %>
+<%- if @limit_nofile then -%>
+LimitNOFILE=<%= @limit_nofile %>
+<%- end -%>
 StandardOutput=syslog
 StandardError=syslog
 
