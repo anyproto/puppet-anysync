@@ -59,7 +59,7 @@ class anysync::node::config (
         group => $group,
       ;
     }
-    if has_key($cfg['storage'],'anyStorePath') {
+    if 'anyStorePath' in $cfg['storage'] {
       file {
         $cfg['storage']['anyStorePath']:
           ensure => directory,
