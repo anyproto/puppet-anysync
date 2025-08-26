@@ -4,6 +4,7 @@ pkg::any-sync-filenode: 0.8.1
 pkg::any-sync-coordinator: 0.4.1
 pkg::any-sync-consensusnode: 0.2.0
 pkg::any-ns-node: 0.5.1
+pkg::any-store: 0.3.4
 
 anysync::node: false
 anysync::filenode: false

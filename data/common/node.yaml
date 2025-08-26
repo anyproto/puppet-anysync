@@ -12,6 +12,13 @@ anysync::node::install::githubartifact:
     releasetag: "v%{lookup('pkg::any-sync-node')}"
     pattern: ".%{facts.os.architecture}.rpm"
     token: "%{lookup('github_token')}"
+  any-store:
+    org_name: "anyproto"
+    repository: "any-store"
+    releasetag: "v%{lookup('pkg::any-store')}"
+    pattern: ".%{facts.os.architecture}.rpm"
+    token: "%{lookup('github_token')}"
+    service_notify: false
 anysync::node::config::accounts: "%{alias('any_sync_accounts')}"
 anysync::node::config::cfg:
   network: "%{alias('any_sync_network')}"
