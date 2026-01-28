@@ -1,0 +1,25 @@
+#!/bin/bash
+PATH="/bin:/sbin:/usr/bin:/usr/sbin"
+
+INTERVAL="300" # sec
+
+# set hostname
+if [[ -z $COLLECTD_HOSTNAME ]]; then
+    if [[ -z $HOSTNAME ]]; then
+        HOSTNAME='localhost'
+    fi
+else
+    HOSTNAME=$COLLECTD_HOSTNAME
+fi
+
+while true; do
+    activeSpaces=$( any-store-cli /storage_new/.index/store.db -e 'db.space.find({s:0}).count()' )
+    removedSpaces=$( any-store-cli /storage_new/.index/store.db -e 'db.space.find({s:1}).count()' )
+    removePrepareSpaces=$( any-store-cli /storage_new/.index/store.db -e 'db.space.find({s:2}).count()' )
+    archivedSpaces=$( any-store-cli /storage_new/.index/store.db -e 'db.space.find({s:3}).count()' )
+    errorSpaces=$( any-store-cli /storage_new/.index/store.db -e 'db.space.find({s:4}).count()' )
+    for KEY in activeSpaces removedSpaces removePrepareSpaces archivedSpaces errorSpaces; do
+        echo -e "PUTVAL \"$HOSTNAME/anysync-storage-${KEY}/counter\" interval=$INTERVAL N:${!KEY}"
+    done
+    sleep $INTERVAL
+done
