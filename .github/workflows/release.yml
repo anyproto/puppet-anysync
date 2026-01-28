@@ -31,8 +31,8 @@ jobs:
 
       - name: Set version in metadata.json
         run: |
-          VERSION="${{ steps.vars.outputs.RELEASE_VERSION }}"
-          perl -pi -e 's/%VERSION%/\Q'"$VERSION"'\E/g' metadata.json
+          perl -pi -e 's/%VERSION%/${{ steps.vars.outputs.RELEASE_VERSION }}/g' metadata.json
+
 
       - name: debug metadata.json
         run: cat metadata.json
