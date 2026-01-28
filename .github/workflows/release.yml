@@ -30,7 +30,12 @@ jobs:
           echo "$GITHUB_REF_NAME" | sed 's|^[a-zA-Z]\+|RELEASE_VERSION=|; s|-|_|g' >> $GITHUB_OUTPUT
 
       - name: Set version in metadata.json
-        run: sed -i 's|%VERSION%|${{ steps.vars.outputs.RELEASE_VERSION }}|' metadata.json
+        run: |
+          VERSION="${{ steps.vars.outputs.RELEASE_VERSION }}"
+          perl -pi -e 's/%VERSION%/\Q'"$VERSION"'\E/g' metadata.json
+
+      - name: debug metadata.json
+        run: cat metadata.json
 
       - name: Build and publish module
         uses: barnumbirr/action-forge-publish@v2.13.0
