@@ -15,8 +15,10 @@ anysync::node::install::githubartifact:
   any-store:
     org_name: "anyproto"
     repository: "any-store"
-    releasetag: "v%{lookup('pkg::any-store')}"
+    releasetag: "cmd/any-store-cli/v%{lookup('pkg::any-store')}"
     pattern: ".%{facts.os.architecture}.rpm"
+    asset_name: "any-store_v%{lookup('pkg::any-store')}-1.%{facts.os.architecture}.rpm"
+    package_version: "%{lookup('pkg::any-store')}-1"
     token: "%{lookup('github_token')}"
     service_notify: false
 anysync::node::config::accounts: "%{alias('any_sync_accounts')}"
