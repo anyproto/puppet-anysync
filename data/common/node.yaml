@@ -5,6 +5,8 @@ anysync::node::config::uid: false
 anysync::node::config::gid: false
 anysync::node::config::daemon_name: any-sync-node
 anysync::node::config::create_storage_path_dir: true
+anysync::node::config::environments: {}
+
 anysync::node::install::githubartifact:
   any-sync-node:
     org_name: "anyproto"

@@ -2,6 +2,8 @@
 anysync::coordinator::config::user: any-sync-coordinator
 anysync::coordinator::config::group: any-sync-coordinator
 anysync::coordinator::config::daemon_name: any-sync-coordinator
+anysync::coordinator::config::environments: {}
+
 anysync::coordinator::install::githubartifact:
   any-sync-coordinator:
     org_name: "anyproto"

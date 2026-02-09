@@ -12,6 +12,10 @@
 #   Defines credentials for access to s3
 # @param syslog_ng
 #   enable or disable syslog-ng configuration for logging
+# @param limit_nofile
+#   set limit nofile for daemon
+# @param environments
+#   set environments variables for daemon
 #
 class anysync::filenode::config (
   Hash $cfg,
@@ -22,6 +26,7 @@ class anysync::filenode::config (
   Hash $aws_credentials,
   Hash $syslog_ng = $::anysync::_syslog_ng,
   Variant[Integer,Boolean] $limit_nofile = $::anysync::limit_nofile,
+  Hash $environments,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:

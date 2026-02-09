@@ -8,6 +8,9 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 Type=simple
 User=<%= @user %>
 Group=<%= @group %>
+<%- @environments.each_pair do |environment,value| -%>
+Environment="<%= environment %>=<%= value %>"
+<%- end -%>
 AmbientCapabilities=CAP_NET_BIND_SERVICE
 ExecStart=/bin/<%= @daemon_name %> -c /etc/<%= @daemon_name %>/config.yml
 Restart=on-failure

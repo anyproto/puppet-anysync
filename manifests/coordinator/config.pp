@@ -10,6 +10,10 @@
 #   Defines daemon name
 # @param syslog_ng
 #   enable or disable syslog-ng configuration for logging
+# @param limit_nofile
+#   set limit nofile for daemon
+# @param environments
+#   set environments variables for daemon
 #
 class anysync::coordinator::config (
   Hash $cfg,
@@ -20,6 +24,7 @@ class anysync::coordinator::config (
   String $daemon_name,
   Hash $syslog_ng = $::anysync::_syslog_ng,
   Variant[Integer,Boolean] $limit_nofile = $::anysync::limit_nofile,
+  Hash $environments,
 ) {
   $basedir = dirname($cfg['networkStorePath'])
   user { $user:

@@ -2,6 +2,8 @@
 anysync::ns::config::user: any-ns-node
 anysync::ns::config::group: any-ns-node
 anysync::ns::config::daemon_name: any-ns-node
+anysync::ns::config::environments: {}
+
 anysync::ns::install::githubartifact:
   any-ns-node:
     org_name: "anyproto"

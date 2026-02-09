@@ -2,6 +2,8 @@
 anysync::filenode::config::user: any-sync-filenode
 anysync::filenode::config::group: any-sync-filenode
 anysync::filenode::config::daemon_name: any-sync-filenode
+anysync::filenode::config::environments: {}
+
 anysync::filenode::install::githubartifact:
   any-sync-filenode:
     org_name: "anyproto"

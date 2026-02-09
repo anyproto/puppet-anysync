@@ -2,6 +2,8 @@
 anysync::consensusnode::config::user: any-sync-consensusnode
 anysync::consensusnode::config::group: any-sync-consensusnode
 anysync::consensusnode::config::daemon_name: any-sync-consensusnode
+anysync::consensusnode::config::environments: {}
+
 anysync::consensusnode::install::githubartifact:
   any-sync-consensusnode:
     org_name: "anyproto"
