@@ -22,13 +22,13 @@ anysync::filenode::config::cfg:
       maxMsgSizeMb: 256
   yamux:
     listenAddrs:
-      - "%{facts.networking.fqdn}:443"
-      - "%{facts.networking.fqdn}:1443"
+      - "0.0.0.0:443"
+      - "0.0.0.0:1443"
     writeTimeoutSec: 10
     dialTimeoutSec: 10
   quic:
     listenAddrs:
-      - "%{facts.networking.fqdn}:5430"
+      - "0.0.0.0:5430"
     writeTimeoutSec: 10
     dialTimeoutSec: 10
   metric:
