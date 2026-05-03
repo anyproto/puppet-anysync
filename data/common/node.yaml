@@ -51,7 +51,7 @@ anysync::node::config::cfg:
   apiServer:
     server:
       listenAddrs:
-        - "%{facts.networking.fqdn}:8080"
+        - "0.0.0.0:8080"
     stream:
       timeoutMilliseconds: 1000
       maxMsgSizeMb: 256
