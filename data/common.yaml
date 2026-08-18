@@ -1,8 +1,8 @@
 ---
-pkg::any-sync-node: 0.12.1
-pkg::any-sync-filenode: 0.12.0
-pkg::any-sync-coordinator: 0.12.0
-pkg::any-sync-consensusnode: 0.12.0
+pkg::any-sync-node: 0.13.1
+pkg::any-sync-filenode: 0.13.0
+pkg::any-sync-coordinator: 0.13.0
+pkg::any-sync-consensusnode: 0.13.0
 pkg::any-ns-node: 0.6.9
 pkg::any-store: 0.4.4
 
