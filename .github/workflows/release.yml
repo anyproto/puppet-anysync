@@ -14,9 +14,9 @@ jobs:
     name: release, build and publish module
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Release ${{ github.ref_name }}
           generate_release_notes: true
@@ -38,7 +38,7 @@ jobs:
         run: cat metadata.json
 
       - name: Build and publish module
-        uses: barnumbirr/action-forge-publish@v2.13.0
+        uses: barnumbirr/action-forge-publish@v2.15.0
         env:
          FORGE_API_KEY: ${{ secrets.FORGE_API_KEY }}
          REPOSITORY_URL: https://forgeapi.puppet.com/v3/releases
